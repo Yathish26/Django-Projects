@@ -1,0 +1,72 @@
+{% include "header.html" %}
+{% if "/news/create" not in request.path %}
+{% include "newsheader.html" %}
+{% endif %}
+<style>
+    .form-group {
+        margin: 26px 268px;
+    }
+
+    .btn {
+        position:relative;
+        left:268px;
+
+    }
+</style>
+
+
+<form method="post" id="blog" action="{% url 'newsupdate' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <input type="text" name="newstitle" class="form-control" placeholder="News Title" maxlength="100">
+    </div>
+    <div class="form-group">
+        <input type="text" name="newsdescription" class="form-control" placeholder="News Description">
+    </div>
+    <div class="form-group">
+        <select name="newscategory" class="form-control">
+            <option value="" disabled selected>Select News Category</option>
+            <option value="Top News">Top News</option>
+            <option value="Business">Business</option>
+            <option value="Technology">Technology</option>
+            <option value="Sports">Sports</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Health">Health</option>
+            <option value="Science">Science</option>
+            <option value="Politics">Politics</option>
+            <option value="Automobiles">Automobiles</option>
+            <option value="Lifestyle">Lifestyle</option>
+            <option value="Crime">Crime</option>
+            <option value="Agriculture">Agriculture</option>
+            <!-- Add more categories as needed -->
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="file" name="photo" class="form-control-file">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+    {% if titleerror %}
+    <div class="alert alert-danger" role="alert">
+        Please Enter the Title
+    </div>
+    {% endif %}
+
+    {% if descriptionerror %}
+    <div class="alert alert-danger" role="alert">
+        Please Enter the Description
+    </div>
+    {% endif %}
+
+    {% if categoryerror %}
+    <div class="alert alert-danger" role="alert">
+        Please Enter the Category
+    </div>
+    {% endif %}
+
+    {% if inputerror %}
+    <div class="alert alert-danger" role="alert">
+        Please Input Values
+    </div>
+    {% endif %}

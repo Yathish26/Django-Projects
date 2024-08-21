@@ -1,0 +1,59 @@
+{% include "newsheader.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/news.css' %}">  
+<style>
+    .alert{
+        width: 161px;
+        left: 44%;  
+        top: 74px;
+    }
+</style> 
+    
+<div class="news-body">
+{% for news in newsdata %}
+<a href="content/{{news.news_slug}}">
+<div class="news-container">
+    
+    {%if news.news_image %}
+    <img src="/media/{{news.news_image}}" alt="">
+    {%endif%}
+    <div class="news-title">{{news.news_title |  truncatewords:8}}...</div>
+    {% if news.news_category == "Top News" %}
+    <a href="/news/topnews"><div class="news-category">{{news.news_category}}</div></a>
+    {% elif news.news_category == "Business" %}
+    <a href="/news/business"><div class="news-category">{{news.news_category}}</div></a>
+    {% elif news.news_category == "Technology" %}
+    <a href="/news/technology"><div class="news-category">{{news.news_category}}</div></a>
+    {% elif news.news_category == "Sports" %}
+    <a href="/news/sports"><div class="news-category">{{news.news_category}}</div></a>
+    {% elif news.news_category == "Entertainment" %}
+    <a href="/news/entertainment"><div class="news-category">{{news.news_category}}</div></a>
+    {% elif news.news_category == "Health" %}
+    <a href="/news/health"><div class="news-category">{{news.news_category}}</div></a>
+    {% elif news.news_category == "Science" %}
+    <a href="/news/science"><div class="news-category">{{news.news_category}}</div></a>
+    {% elif news.news_category == "Politics" %}
+    <a href="/news/politics"><div class="news-category">{{news.news_category}}</div></a>
+    {% elif news.news_category == "Education" %}
+    <a href="/news/education"><div class="news-category">{{news.news_category}}</div></a>
+    {% elif news.news_category == "Automobiles" %}
+    <a href="/news/automobiles"><div class="news-category">{{news.news_category}}</div></a>
+    {% elif news.news_category == "Lifestyle" %}
+    <a href="/news/lifestyle"><div class="news-category">{{news.news_category}}</div></a>
+    {% elif news.news_category == "Crime" %}
+    <a href="/news/crime"><div class="news-category">{{news.news_category}}</div></a>
+    {% elif news.news_category == "Agriculture" %}
+    <a href="/news/agriculture"><div class="news-category">{{news.news_category}}</div></a>
+    {% endif %}
+    <div class="news-description">{{news.news_description | truncatewords:10}}</div>
+    </a>
+</div>
+
+{% empty %}
+<div class="alert alert-danger" role="alert">
+    No Result Found
+</div>
+
+{% endfor %}
+
+</div> 

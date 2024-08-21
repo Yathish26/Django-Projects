@@ -1,0 +1,31 @@
+{% include "header.html" %}
+
+
+<div class="bg-success text-white text-center py-3">
+    Even and Odd Differentiator
+</div>
+
+<!-- Alert Section (if needed) -->
+<div class="container mt-3">
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+        Please Enter the Value
+    </div>
+    {% endif %}
+</div>
+
+<!-- Form Container -->
+<div class="container mt-5">
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="num1">Enter the Number</label>
+            <input type="number" class="form-control" name="num1" id="num1">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group mt-3">
+            <label for="result">This Number is</label>
+            <input type="text" class="form-control" id="result" value="{{answer}}" readonly>
+        </div>
+    </form>
+</div>

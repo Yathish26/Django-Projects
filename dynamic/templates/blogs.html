@@ -1,0 +1,60 @@
+{% include "header.html" %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/blogs.css' %}">
+
+<style>
+    
+
+
+</style>
+
+<div class="bg-yellow">
+    <a href="/blogs/create-blog">   
+        <div class="create-logo">
+            <div class="circle">
+                <div class="plus"></div>
+            </div>
+        </div>
+    </a>
+    <div class="head-title">
+        {{title}}
+    </div>
+    <div class="search-container">
+        <form class="form-inline my-2 my-lg-0" method="get">
+            <input class="form-control mr-sm-2" name='searchkey' type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value='Search'>Search</button>
+        </form>
+    </div>    
+</div>
+
+{% for n in blogdata %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card custom-card">
+                <div class="card-header bg-dark text-white">
+                    <h2 class="card-title">{{ n.Title }}</h2>
+                </div>
+                <div class="card-body">
+                    {% if n.Photos %}
+                    <div class="img-container mb-3" style="background-image: url('/media/{{ n.Photos }}');" title="{{ n.Title }}"></div>
+                    {% endif %}
+                    <div class="threebox">
+                        <p class="card-text">{{ n.Description | safe | truncatewords:10 }}...</p>
+                        <p class="lead mb-0">
+                            <a href="content/{{ n.slugdata }}" class="text-warning font-weight-bold">Continue reading...</a>
+                        </p>
+                        <p class="lead my-2">Category : {{ n.Category }} </p>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+{% empty %}
+<div class="alert alert-danger" role="alert">
+    No Result Found
+</div>    
+{% endfor %}

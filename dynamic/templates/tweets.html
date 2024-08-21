@@ -1,0 +1,165 @@
+{% include "header.html" %}
+{% load static %}
+
+<link rel="stylesheet"  href="{% static 'css/tweets.css' %}">
+<style>
+    .search-container {
+        position: absolute;
+        right: 20px; /* Adjust as needed */
+        top: 12%; /* Vertically center */
+        transform: translateY(-50%); /* Adjust for centering */
+    }
+    .alert-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+        position: relative;
+        left: 555px;
+        top: 85px;
+    }
+
+    .tweet-box {
+        background-color: #fff;
+        border: 1px solid #e1e8ed;
+        border-radius: 16px;
+        width: 500px;
+        padding: 22px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        position: relative;
+        top: 56px;
+        left: 500px;
+    }
+    a {
+        color: #000000;
+        text-decoration: none;
+        background-color: transparent;
+        position:relative;
+    }
+
+    a:hover {
+        color: #0056b3;
+        text-decoration: none;
+    }
+    /*Below is the css part of Warning Message */
+
+    .warning-message {
+        color: #D8000C;
+        font-family: sans-serif;
+        background-color: #FFD2D2;
+        border: 1px solid #D8000C;
+        padding: 7px;
+        border-radius: 18px;
+        font-size: 12px;
+        width: fit-content;
+        margin: 0px 0;
+        font-weight: bold;
+        position: relative;
+        bottom: 147px;
+        left: 46%;
+    }
+
+    .success-message {
+        color: #06a339;
+        font-family: sans-serif;
+        background-color: #d2ffda;
+        border: 1px solid #1de21c;
+        padding: 7px;
+        border-radius: 18px;
+        font-size: 12px;
+        width: fit-content;
+        margin: 0px 0;
+        font-weight: bold;
+        position: relative;
+        bottom: 147px;
+        left: 50%;
+        transform: translateX(-50%); /* Center horizontally */
+        opacity: 1; /* Initial opacity */
+        animation: fadeOut 2s forwards;
+    }
+    
+    @keyframes fadeOut {
+        0% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+            display: none;
+        }
+    }
+
+</style>
+
+<div class="bg-custom text-black font-weight-bold text-center py-3">
+    <a href="/tweets/" style="text-decoration: none;">Tweet Social</a>
+</div>
+
+<div class="search-container">
+    <form class="form-inline my-2 my-lg-0" method="get">
+        <input class="form-control mr-sm-2" name='searchkey' type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value='Search'>Search</button>
+    </form>
+</div>
+
+<form method="post" action="{% url 'tweeted' %}">
+    {% csrf_token %}
+    <div class="tweet-box">
+        <div class="tweet-header">
+            <img src="https://via.placeholder.com/40" alt="Profile Picture" class="profile-pic">
+            <input type="text" name="username" class="username-input" placeholder="@username">
+            <textarea class="tweet-input" name="tweet" placeholder="What's happening?"></textarea>
+        </div>
+        <div class="tweet-footer">
+            <div class="icons">
+                <i class="fas fa-image"></i>
+                <i class="fas fa-gif"></i>
+                <i class="fas fa-poll"></i>
+                <i class="fas fa-smile"></i>
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+            <button class="tweet-button">Tweet</button>
+        </div>
+    </div>
+</form>
+
+
+{% if username_yes_notweet %}
+    <div class="warning-message">
+       Tweet is Missing
+    </div>
+{% endif %}
+
+{% if username_no_yestweet %}
+    <div class="warning-message">
+        Username is Missing
+    </div>
+{% endif %}
+
+{% if usernameandtweeterror %}
+    <div class="warning-message">
+        Enter the Values
+    </div>
+{% endif %}
+
+{% if usernameandtweetyes %}
+    <div class="success-message">
+        Tweeted !!
+    </div>
+{% endif %}
+
+
+<div class="tweet-grid">
+    {% for tweet in tweetdata %}
+        <div class="tweet-container">
+            <div class='tweet-title'>{{tweet.tweet}}</div>
+            <div class="tweet-username">@{{tweet.username}}</div>
+            <div class="tweet-time">{{tweet.created_at}}</div>
+        </div>
+        {% empty %}
+<div class="alert alert-danger" role="alert">
+    No Result Found
+</div> 
+    {% endfor %}
+</div>

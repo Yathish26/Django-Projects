@@ -1,0 +1,79 @@
+{% include "header.html" %}
+
+<style>
+    .bg-yellow{
+        background-color: yellow;
+        color: Black;
+        font-weight: bold;
+        text-align: center;
+        padding-top: 2rem;
+        padding-bottom: 1rem;
+        height:70px;
+    }
+    .head-title {
+        text-align:center;
+        position:relative;
+        bottom:10px;
+    }
+    
+    .form-group {
+        margin: 26px 268px;
+    }
+
+    .btn {
+        position:relative;
+        left:268px; 
+
+    }
+    .form-control {
+        border-radius:14px;
+    }
+</style>
+
+
+<div class="bg-yellow">
+    <div class="head-title">
+        {{title}}
+    </div>    
+</div>
+
+<form method="post" id="blog" action="{% url 'blogged' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <input type="text" name="Title" class="form-control" placeholder="Title">
+    </div>
+    <div class="form-group">
+        <input type="text" name="Category" class="form-control" placeholder="Category">
+    </div>
+    <div class="form-group">
+        <input type="text" name="Description" class="form-control" placeholder="Description">
+    </div>
+    <div class="form-group">
+        <input type="file" name="Photo" class="form-control-file">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% if inputerror %}
+    <div class="alert alert-danger" role="alert">
+        Please Input Values
+    </div>
+    {% endif %}
+
+    {% if categoryerror %}
+    <div class="alert alert-danger" role="alert">
+        Please Enter the Category
+    </div>
+    {% endif %}
+
+    {% if descriptionerror %}
+    <div class="alert alert-danger" role="alert">
+        Please Input Description
+    </div>
+    {% endif %}
+
+    {% if titleerror %}
+    <div class="alert alert-danger" role="alert">
+        Please Enter the Title
+    </div>
+    {% endif %}

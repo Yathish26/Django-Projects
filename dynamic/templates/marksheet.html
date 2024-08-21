@@ -1,0 +1,56 @@
+{% include "header.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/marksheet.css' %}">
+
+
+<form method="post">
+{% csrf_token %}
+<div class="bg-success text-white text-center py-3">Marksheet</div>
+<div class="container mt-5">
+    <form>
+        {% if error %}
+    <div class="alert alert-danger" role="alert">
+        Please Enter the Value
+    </div>
+    {% endif %}
+        <div class="form-group">
+            <label for="m1">English</label>
+            <input type="number" name="m1" class="form-control" id="m1">
+        </div>
+        <div class="form-group">
+            <label for="m2">Kannada</label>
+            <input type="number" name="m2" class="form-control" id="m2">
+        </div>
+        <div class="form-group">
+            <label for="m3">Hindi</label>
+            <input type="number" name="m3" class="form-control" id="m3">
+        </div>
+        <div class="form-group">
+            <label for="m4">Mathematics</label>
+            <input type="number" name="m4" class="form-control" id="m4">
+        </div>
+        <div class="form-group">
+            <label for="m5">Science</label>
+            <input type="number" name="m5" class="form-control" id="m5">
+        </div>
+        <div class="form-group">
+            <label for="m6">Social Science</label>
+            <input type="number" name="m6" class="form-control" id="m6">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br/>
+    <div class="form-group">
+        <label for="total">Total</label>
+        <input type="number" class="form-control" id="total" value="{{total}}" readonly>
+    </div>
+    <div class="form-group">
+        <label for="total">Percentage</label>
+        <input type="number" class="form-control" id="percentage" value="{{percentage}}" readonly>
+    </div>
+    <div class="form-group">
+        <label for="total">Result</label>
+        <input type="text" class="form-control" id="result" value="{{result}}" readonly>
+    </div>
+</div>
+</form>

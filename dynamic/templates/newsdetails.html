@@ -1,0 +1,70 @@
+{% include "header.html" %}
+<title>{{ndetails.news_title}}</title>
+
+<style>
+    .bg-danger-custom {
+        background-color: #a31515; /* Custom background color if needed */
+        position: relative; /* Set to relative so the child can be positioned absolutely */
+        padding: 20px; /* Add padding to ensure space for the search container */
+    }
+    /*detail part*/
+
+    .news-title {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #343a40;
+        text-align: center;
+        margin-top: 2rem;
+    }
+    
+    .news-description {
+       font-size: 1.25rem;
+        color: #343a40;
+        text-align: justify;
+        padding: 5rem;
+        background-color: #f8f9fa;
+        border-radius: 1.5rem;
+        margin-top: 3rem;
+        width: 97%;
+        margin: auto;
+    }
+    
+    .news-category {
+        font-size: 1rem;
+        color: #6c757d;
+        text-align: center;
+        margin-top: 1rem;
+    }
+    /*image*/
+    .photo img {
+        box-shadow: 0px 0px 11px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0;
+        margin-bottom: 0;
+        max-width: 40%;
+        height: auto;
+        border-radius: 11px;
+    }
+    
+</style>
+
+<div class="bg-danger-custom text-white text-center py-3">
+    {{title}}
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="news-title">{{ndetails.news_title}}</h1>
+            <p class="news-category">Category: {{ndetails.news_category}}</p>
+            {% if ndetails.news_image %}
+            <div class="photo">
+                <img src="/media/{{ndetails.news_image}}">
+            </div>   
+            {% endif %}
+            <p class="news-description">{{ndetails.news_description | safe }}</p>
+        </div>
+    </div>
+</div>
