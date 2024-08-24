@@ -2,16 +2,10 @@
   margin: 0;
 }
 
-
-
-.news-header{
-  position:fixed;
-  z-index: 1000;
-}
-
 .news-body{
   margin-top:122px;
 }
+
 .news-container{
   width: 436px;
   height: 320px;
