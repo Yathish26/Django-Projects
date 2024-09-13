@@ -1,0 +1,100 @@
+.full-height {
+    height: 10vh;
+}
+.centered-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.news-header {
+    background-color: #a31515; /* Custom background color if needed */
+    position: relative; /* Set to relative so the child can be positioned absolutely */
+    padding: 20px; /* Add padding to ensure space for the search container */
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.navbar-nav .nav-link {
+    color: #e6e3dc !important; /* Ensure the text color is white */
+}
+
+/*create button part*/
+
+.create-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    cursor: pointer; /* Change cursor to pointer */
+    transition: transform 0.2s ease-in-out; /* Smooth transition for hover effect */
+}
+
+.circle {
+    width: 50px;
+    height: 50px;
+    background-color: #fc0b03; /* Blue color */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: transform 0.2s ease-in-out; /* Smooth transition for hover effect */
+}
+
+.plus {
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+.plus::before,
+.plus::after {
+    content: '';
+    position: absolute;
+    background-color: #fff;
+}
+
+.plus::before {
+    width: 20px;
+    height: 4px;
+    top: 8px;
+    left: 0;
+}
+
+.plus::after {
+    width: 4px;
+    height: 20px;
+    top: 0;
+    left: 8px;
+}
+
+/* Hover Effect */
+.create-logo:hover .circle {
+    transform: scale(1.1); /* Zoom in */
+}
+
+/* Click Effect */
+.create-logo:active .circle {
+    animation: clickEffect 0.2s ease-in-out;
+}
+
+@keyframes clickEffect {
+    0% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1.0);
+    }
+}
+
+.navbar-expand-lg {
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
