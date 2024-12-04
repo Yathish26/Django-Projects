@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% load static %}
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+        <title>Letter List</title>
+    </head>
+
+    <body>
+        <h1 class="bg-yellow-500 p-6 text-3xl">Letter Booth</h1>
+        <ul>
+            {% for letter in letters %}
+            <li>
+                <div class="p-4 m-4 border-2 rounded-xl w-fit">
+                    <div class="flex gap-6 ">
+                        <h2 class="text-2xl">{{ letter.text }}</h2>
+                        <div class="w-fit flex justify-center items-center border-2 rounded-3xl border-red-500 px-2 {% if letter.category == 'General' %}hidden{% endif %}">
+                            <p class="text-red-500 text-sm font-semibold ">{{ letter.category }}</p>
+                        </div>
+
+                    </div>
+
+                    <p>{{ letter.content }}</p>
+                </div>
+
+            </li>
+            {% empty %}
+            <li>No letters available.</li>
+            {% endfor %}
+        </ul>
+    </body>
+
+</html>

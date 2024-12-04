@@ -1,1 +1,0 @@
-web: gunicorn dynamic.wsgi --log-level=debug
