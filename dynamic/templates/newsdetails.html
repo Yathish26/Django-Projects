@@ -1,70 +1,23 @@
 {% include "header.html" %}
-<title>{{ndetails.news_title}}</title>
+<title>{{ ndetails.news_title }}</title>
 
-<style>
-    .bg-danger-custom {
-        background-color: #a31515; /* Custom background color if needed */
-        position: relative; /* Set to relative so the child can be positioned absolutely */
-        padding: 20px; /* Add padding to ensure space for the search container */
-    }
-    /*detail part*/
-
-    .news-title {
-        font-size: 3rem;
-        font-weight: bold;
-        color: #343a40;
-        text-align: center;
-        margin-top: 2rem;
-    }
-    
-    .news-description {
-       font-size: 1.25rem;
-        color: #343a40;
-        text-align: justify;
-        padding: 5rem;
-        background-color: #f8f9fa;
-        border-radius: 1.5rem;
-        margin-top: 3rem;
-        width: 97%;
-        margin: auto;
-    }
-    
-    .news-category {
-        font-size: 1rem;
-        color: #6c757d;
-        text-align: center;
-        margin-top: 1rem;
-    }
-    /*image*/
-    .photo img {
-        box-shadow: 0px 0px 11px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 0;
-        margin-bottom: 0;
-        max-width: 40%;
-        height: auto;
-        border-radius: 11px;
-    }
-    
-</style>
-
-<div class="bg-danger-custom text-white text-center py-3">
-    {{title}}
+<div class="bg-red-700 text-white text-center py-4 text-2xl font-semibold">
+    {{ ndetails.news_title }}
 </div>
 
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-md-12">
-            <h1 class="news-title">{{ndetails.news_title}}</h1>
-            <p class="news-category">Category: {{ndetails.news_category}}</p>
-            {% if ndetails.news_image %}
-            <div class="photo">
-                <img src="/media/{{ndetails.news_image}}">
-            </div>   
-            {% endif %}
-            <p class="news-description">{{ndetails.news_description | safe }}</p>
-        </div>
+<div class="container mx-auto px-4 mt-6">
+    <div class="text-center">
+        <h1 class="text-4xl font-bold text-gray-800">{{ ndetails.news_title }}</h1>
+        <p class="text-lg text-gray-600 mt-2 font-semibold">Category: {{ ndetails.news_category }}</p>
+    </div>
+
+    {% if ndetails.news_image %}
+    <div class="flex justify-center mt-6">
+        <img src="/media/{{ ndetails.news_image }}" class="rounded-lg shadow-md w-2/5 md:w-3/5">
+    </div>
+    {% endif %}
+
+    <div class="bg-gray-100 text-gray-800 text-lg text-justify p-6 md:p-8 rounded-lg shadow-lg mt-8 w-11/12 md:w-4/5 mx-auto">
+        {{ ndetails.news_description | safe }}
     </div>
 </div>

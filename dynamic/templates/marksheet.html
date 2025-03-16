@@ -2,55 +2,69 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/marksheet.css' %}">
 
+<div class="bg-green-600 text-white text-center py-4 text-2xl font-bold">
+    Marksheet
+</div>
 
-<form method="post">
-{% csrf_token %}
-<div class="bg-success text-white text-center py-3">Marksheet</div>
-<div class="container mt-5">
-    <form>
-        {% if error %}
-    <div class="alert alert-danger" role="alert">
+<!-- Alert Section -->
+<div class="container mt-3">
+    {% if error %}
+    <div class="bg-red-500 text-white p-3 rounded-lg text-center">
         Please Enter the Value
     </div>
     {% endif %}
-        <div class="form-group">
-            <label for="m1">English</label>
-            <input type="number" name="m1" class="form-control" id="m1">
+</div>
+
+<!-- Form Container -->
+<div class="flex justify-center items-center min-h-screen bg-gray-100">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+        <form method="post">
+            {% csrf_token %}
+            <div class="space-y-4">
+                <div>
+                    <label class="block font-semibold">English</label>
+                    <input type="number" name="m1" class="w-full p-3 border border-gray-300 rounded-lg mt-1">
+                </div>
+                <div>
+                    <label class="block font-semibold">Kannada</label>
+                    <input type="number" name="m2" class="w-full p-3 border border-gray-300 rounded-lg mt-1">
+                </div>
+                <div>
+                    <label class="block font-semibold">Hindi</label>
+                    <input type="number" name="m3" class="w-full p-3 border border-gray-300 rounded-lg mt-1">
+                </div>
+                <div>
+                    <label class="block font-semibold">Mathematics</label>
+                    <input type="number" name="m4" class="w-full p-3 border border-gray-300 rounded-lg mt-1">
+                </div>
+                <div>
+                    <label class="block font-semibold">Science</label>
+                    <input type="number" name="m5" class="w-full p-3 border border-gray-300 rounded-lg mt-1">
+                </div>
+                <div>
+                    <label class="block font-semibold">Social Science</label>
+                    <input type="number" name="m6" class="w-full p-3 border border-gray-300 rounded-lg mt-1">
+                </div>
+                <button type="submit" class="w-full bg-blue-500 text-white p-3 rounded-lg font-bold hover:bg-blue-600 transition">
+                    Submit
+                </button>
+            </div>
+        </form>
+
+        <!-- Result Section -->
+        <div class="mt-6 space-y-4">
+            <div>
+                <label class="block font-semibold">Total</label>
+                <input type="number" class="w-full p-3 border border-gray-300 rounded-lg mt-1 bg-gray-100 text-center font-semibold" id="total" value="{{total}}" readonly>
+            </div>
+            <div>
+                <label class="block font-semibold">Percentage</label>
+                <input type="number" class="w-full p-3 border border-gray-300 rounded-lg mt-1 bg-gray-100 text-center font-semibold" id="percentage" value="{{percentage}}" readonly>
+            </div>
+            <div>
+                <label class="block font-semibold">Result</label>
+                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg mt-1 bg-gray-100 text-center font-semibold" id="result" value="{{result}}" readonly>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="m2">Kannada</label>
-            <input type="number" name="m2" class="form-control" id="m2">
-        </div>
-        <div class="form-group">
-            <label for="m3">Hindi</label>
-            <input type="number" name="m3" class="form-control" id="m3">
-        </div>
-        <div class="form-group">
-            <label for="m4">Mathematics</label>
-            <input type="number" name="m4" class="form-control" id="m4">
-        </div>
-        <div class="form-group">
-            <label for="m5">Science</label>
-            <input type="number" name="m5" class="form-control" id="m5">
-        </div>
-        <div class="form-group">
-            <label for="m6">Social Science</label>
-            <input type="number" name="m6" class="form-control" id="m6">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    <br/>
-    <div class="form-group">
-        <label for="total">Total</label>
-        <input type="number" class="form-control" id="total" value="{{total}}" readonly>
-    </div>
-    <div class="form-group">
-        <label for="total">Percentage</label>
-        <input type="number" class="form-control" id="percentage" value="{{percentage}}" readonly>
-    </div>
-    <div class="form-group">
-        <label for="total">Result</label>
-        <input type="text" class="form-control" id="result" value="{{result}}" readonly>
     </div>
 </div>
-</form>

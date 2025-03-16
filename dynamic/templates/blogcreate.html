@@ -1,79 +1,53 @@
 {% include "header.html" %}
 
-<style>
-    .bg-yellow{
-        background-color: yellow;
-        color: Black;
-        font-weight: bold;
-        text-align: center;
-        padding-top: 2rem;
-        padding-bottom: 1rem;
-        height:70px;
-    }
-    .head-title {
-        text-align:center;
-        position:relative;
-        bottom:10px;
-    }
-    
-    .form-group {
-        margin: 26px 268px;
-    }
-
-    .btn {
-        position:relative;
-        left:268px; 
-
-    }
-    .form-control {
-        border-radius:14px;
-    }
-</style>
-
-
-<div class="bg-yellow">
-    <div class="head-title">
-        {{title}}
-    </div>    
+<div class="bg-yellow-400 text-black font-bold text-center py-6 text-2xl">
+    {{ title }}
 </div>
 
-<form method="post" id="blog" action="{% url 'blogged' %}" enctype="multipart/form-data">
+<form method="post" id="blog" action="{% url 'blogged' %}" enctype="multipart/form-data" class="max-w-lg mx-auto mt-8 p-6 bg-white shadow-lg rounded-lg">
     {% csrf_token %}
-    <div class="form-group">
-        <input type="text" name="Title" class="form-control" placeholder="Title">
+    
+    <div class="mb-4">
+        <input type="text" name="Title" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Title">
     </div>
-    <div class="form-group">
-        <input type="text" name="Category" class="form-control" placeholder="Category">
+    
+    <div class="mb-4">
+        <input type="text" name="Category" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Category">
     </div>
-    <div class="form-group">
-        <input type="text" name="Description" class="form-control" placeholder="Description">
+    
+    <div class="mb-4">
+        <textarea name="Description" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Description"></textarea>
     </div>
-    <div class="form-group">
-        <input type="file" name="Photo" class="form-control-file">
+    
+    <div class="mb-4">
+        <input type="file" name="Photo" class="w-full file:bg-blue-500 file:text-white file:px-4 file:py-2 file:rounded-lg file:cursor-pointer">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    
+    <button type="submit" class="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition">
+        Submit
+    </button>
 </form>
 
 {% if inputerror %}
-    <div class="alert alert-danger" role="alert">
+    <div class="max-w-lg mx-auto mt-4 bg-red-500 text-white text-center p-3 rounded-lg">
         Please Input Values
     </div>
-    {% endif %}
+{% endif %}
 
-    {% if categoryerror %}
-    <div class="alert alert-danger" role="alert">
+{% if categoryerror %}
+    <div class="max-w-lg mx-auto mt-4 bg-red-500 text-white text-center p-3 rounded-lg">
         Please Enter the Category
     </div>
-    {% endif %}
+{% endif %}
 
-    {% if descriptionerror %}
-    <div class="alert alert-danger" role="alert">
+{% if descriptionerror %}
+    <div class="max-w-lg mx-auto mt-4 bg-red-500 text-white text-center p-3 rounded-lg">
         Please Input Description
     </div>
-    {% endif %}
+{% endif %}
 
-    {% if titleerror %}
-    <div class="alert alert-danger" role="alert">
+{% if titleerror %}
+    <div class="max-w-lg mx-auto mt-4 bg-red-500 text-white text-center p-3 rounded-lg">
         Please Enter the Title
     </div>
-    {% endif %}
+{% endif %}

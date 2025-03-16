@@ -1,78 +1,51 @@
 {% include "header.html" %}
 {% load static %}
-<link rel='stylesheet' href="{% static 'css/newsheader.css' %}">
 
+<link rel="stylesheet" href="{% static 'css/newsheader.css' %}">
 
-<div class="news-header text-white text-center ">
-
+<div class="bg-red-700 text-white text-center py-4 relative">
     {% if "/news/create" not in request.path %}
-    <a href="/news/create">
-        <div class="create-logo">
-            <div class="circle">
-                <div class="plus"></div>
-            </div> 
+    <a href="/news/create" class="absolute top-3 left-4">
+        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform">
+            <div class="text-red-700 text-3xl font-bold">+</div>
         </div>
     </a>
-    
     {% endif %}
-    
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+
+    <!-- Navbar -->
+    <nav class="container mx-auto flex flex-wrap justify-center md:justify-start">
+        <button class="md:hidden text-white focus:outline-none" onclick="toggleNav()">
+            ☰
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/news/topnews">Top News<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/news/business">Business</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/news/technology">Technology</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/news/sports">Sports</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/news/entertainment">Entertainment</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/news/health">Health </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/news/science">Science</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/news/politics">Politics</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/news/education">Education</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/news/automobiles">Automobiles</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/news/lifestyle">Lifestyle</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/news/crime">Crime</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/news/agriculture">Agriculture</a>
-                </li>
-            </ul>
-        </div>
+        <ul id="nav-menu" class="hidden md:flex flex-wrap gap-4 mt-4 md:mt-0">
+            <li><a href="/news/topnews" class="hover:text-gray-300">Top News</a></li>
+            <li><a href="/news/business" class="hover:text-gray-300">Business</a></li>
+            <li><a href="/news/technology" class="hover:text-gray-300">Technology</a></li>
+            <li><a href="/news/sports" class="hover:text-gray-300">Sports</a></li>
+            <li><a href="/news/entertainment" class="hover:text-gray-300">Entertainment</a></li>
+            <li><a href="/news/health" class="hover:text-gray-300">Health</a></li>
+            <li><a href="/news/science" class="hover:text-gray-300">Science</a></li>
+            <li><a href="/news/politics" class="hover:text-gray-300">Politics</a></li>
+            <li><a href="/news/education" class="hover:text-gray-300">Education</a></li>
+            <li><a href="/news/automobiles" class="hover:text-gray-300">Automobiles</a></li>
+            <li><a href="/news/lifestyle" class="hover:text-gray-300">Lifestyle</a></li>
+            <li><a href="/news/crime" class="hover:text-gray-300">Crime</a></li>
+            <li><a href="/news/agriculture" class="hover:text-gray-300">Agriculture</a></li>
+        </ul>
     </nav>
-    <div class="search-container">
-        <form class="form-inline my-2 my-lg-0" method="get">
-            <input class="form-control mr-sm-2" name='searchkey' type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value='Search'>Search</button>
+
+    <!-- Search Bar -->
+    <div class="mt-4">
+        <form class="flex items-center justify-center space-x-2">
+            <input class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" name="searchkey" type="text" placeholder="Search">
+            <button class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition">Search</button>
         </form>
     </div>
-
 </div>
 
-
-
-    
+<script>
+    function toggleNav() {
+        const navMenu = document.getElementById("nav-menu");
+        navMenu.classList.toggle("hidden");
+    }
+</script>

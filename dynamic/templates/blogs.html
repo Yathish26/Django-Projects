@@ -3,58 +3,46 @@
 
 <link rel="stylesheet" href="{% static 'css/blogs.css' %}">
 
-<style>
-    
-
-
-</style>
-
-<div class="bg-yellow">
+<div class="bg-yellow-400 p-4">
     <a href="/blogs/create-blog">   
-        <div class="create-logo">
-            <div class="circle">
-                <div class="plus"></div>
+        <div class="flex justify-center items-center">
+            <div class="w-16 h-16 bg-white rounded-full flex justify-center items-center shadow-lg">
+                <div class="w-6 h-1 bg-black mb-1"></div>
+                <div class="w-1 h-6 bg-black absolute"></div>
             </div>
         </div>
     </a>
-    <div class="head-title">
-        {{title}}
+    <div class="text-center text-xl font-bold mt-2">
+        {{ title }}
     </div>
-    <div class="search-container">
-        <form class="form-inline my-2 my-lg-0" method="get">
-            <input class="form-control mr-sm-2" name='searchkey' type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value='Search'>Search</button>
+    <div class="flex justify-center mt-4">
+        <form class="flex items-center" method="get">
+            <input class="border border-gray-400 rounded-l px-4 py-2 focus:outline-none" name='searchkey' type="text" placeholder="Search" aria-label="Search">
+            <button class="bg-green-500 text-white px-4 py-2 rounded-r hover:bg-green-600" type="submit" value="Search">Search</button>
         </form>
     </div>    
 </div>
 
 {% for n in blogdata %}
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card custom-card">
-                <div class="card-header bg-dark text-white">
-                    <h2 class="card-title">{{ n.Title }}</h2>
-                </div>
-                <div class="card-body">
-                    {% if n.Photos %}
-                    <div class="img-container mb-3" style="background-image: url('/media/{{ n.Photos }}');" title="{{ n.Title }}"></div>
-                    {% endif %}
-                    <div class="threebox">
-                        <p class="card-text">{{ n.Description | safe | truncatewords:10 }}...</p>
-                        <p class="lead mb-0">
-                            <a href="content/{{ n.slugdata }}" class="text-warning font-weight-bold">Continue reading...</a>
-                        </p>
-                        <p class="lead my-2">Category : {{ n.Category }} </p>
-                    </div>    
-                </div>
-            </div>
+<div class="container mx-auto my-6 p-4">
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <div class="bg-gray-800 text-white px-6 py-4">
+            <h2 class="text-2xl font-semibold">{{ n.Title }}</h2>
+        </div>
+        <div class="p-6">
+            {% if n.Photos %}
+            <div class="w-full h-64 bg-cover bg-center rounded-md mb-4" style="background-image: url('/media/{{ n.Photos }}');" title="{{ n.Title }}"></div>
+            {% endif %}
+            <p class="text-gray-700 mb-4">{{ n.Description | safe | truncatewords:10 }}...</p>
+            <p class="text-blue-500 font-semibold">
+                <a href="content/{{ n.slugdata }}" class="hover:underline">Continue reading...</a>
+            </p>
+            <p class="text-gray-600 mt-2">Category: <span class="font-bold">{{ n.Category }}</span></p>
         </div>
     </div>
-  </div>
-  
+</div>
 {% empty %}
-<div class="alert alert-danger" role="alert">
+<div class="text-center text-red-500 font-bold text-lg my-6">
     No Result Found
 </div>    
-{% endfor %}
+{% endfor %} 
